@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PS.FritzBox.Manager
+namespace PS.FritzBox.Manager.Modules
 {
-    public partial class Form1 : Form
+    public partial class DeviceLogModule : ModuleBase
     {
-        public Form1()
+        public DeviceLogModule()
         {
             InitializeComponent();
+            this.Category = ModuleCategory.System;
+            this.Name = "DeviceLog";
         }
     }
 }
