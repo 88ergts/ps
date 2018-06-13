@@ -1,6 +1,6 @@
 ﻿namespace PS.FritzBox.Manager.Modules
 {
-    partial class ModuleBase
+    partial class DynamicDNSModule
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // ModuleBase
+            // DynamicDNSModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Name = "ModuleBase";
-            this.Size = new System.Drawing.Size(567, 511);
+            this.Icon = global::PS.FritzBox.Manager.Properties.Resources.icons8_dyndns_32;
+            this.Name = "DynamicDNSModule";
+            this.Size = new System.Drawing.Size(601, 270);
             this.ResumeLayout(false);
 
         }

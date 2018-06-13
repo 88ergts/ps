@@ -1,6 +1,6 @@
 ﻿namespace PS.FritzBox.Manager.Modules
 {
-    partial class ModuleBase
+    partial class PortMappingsModule
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -30,13 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // ModuleBase
+            // PortMappingsModule
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Name = "ModuleBase";
-            this.Size = new System.Drawing.Size(567, 511);
+            this.Icon = global::PS.FritzBox.Manager.Properties.Resources.icons8_schalter_32;
+            this.Name = "PortMappingsModule";
             this.ResumeLayout(false);
 
         }

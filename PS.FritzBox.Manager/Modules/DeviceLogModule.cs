@@ -7,16 +7,44 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PS.FritzBox.API;
 
 namespace PS.FritzBox.Manager.Modules
 {
-    public partial class DeviceLogModule : ModuleBase
+    public partial class InternetEventsModule : ModuleBase
     {
-        public DeviceLogModule()
+        public InternetEventsModule()
         {
             InitializeComponent();
-            this.Category = ModuleCategory.System;
-            this.Name = "DeviceLog";
+            this.Category = ModuleCategory.Internet;
+            this.Name = "Events";
+            this.Description = "Views device event log.";
+        }
+
+        /// <summary>
+        /// Method to refresh the viewed data
+        /// </summary>
+        public override async void RefreshData()
+        {
+            // show waiter...
+            try
+            {
+                DeviceInfoClient client = new DeviceInfoClient(this.ConnectionSettings);
+                var log = await client.GetDeviceLogAsync();
+
+                this.rtbLog.Clear();
+                foreach (var entry in log)
+                    this.rtbLog.Text += $"{entry}{Environment.NewLine}";
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Failed reading device log.{Environment.NewLine}{ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

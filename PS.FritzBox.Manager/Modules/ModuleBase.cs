@@ -19,7 +19,7 @@ namespace PS.FritzBox.Manager.Modules
         public ModuleBase()
         {
             InitializeComponent();
-            this.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+           // this.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
         }
 
         /// <summary>
@@ -33,8 +33,20 @@ namespace PS.FritzBox.Manager.Modules
         public ConnectionSettings ConnectionSettings { get; set; }
 
         /// <summary>
+        /// Gets or sets the description
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// Gets or sets the icon
         /// </summary>
         public Image Icon { get; set; }
+
+        /// <summary>
+        /// Method to refresh the viewd data
+        /// </summary>
+        public async virtual void RefreshData()
+        {
+        }
     }
 }

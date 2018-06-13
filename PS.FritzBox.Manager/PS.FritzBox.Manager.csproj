@@ -54,6 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmConnectionSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConnectionSettings.Designer.cs">
+      <DependentUpon>FrmConnectionSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,18 @@
     <Compile Include="Modules\DeviceLogModule.Designer.cs">
       <DependentUpon>DeviceLogModule.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modules\DynamicDNSModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\DynamicDNSModule.Designer.cs">
+      <DependentUpon>DynamicDNSModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\HomeNetworkOverviewModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\HomeNetworkOverviewModule.Designer.cs">
+      <DependentUpon>HomeNetworkOverviewModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modules\ModuleBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -73,16 +91,44 @@
       <DependentUpon>ModuleBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Modules\ModuleCategory.cs" />
+    <Compile Include="Modules\OnlineMonitorModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\OnlineMonitorModule.Designer.cs">
+      <DependentUpon>OnlineMonitorModule.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\PortMappingsModule.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Modules\PortMappingsModule.Designer.cs">
+      <DependentUpon>PortMappingsModule.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StringExtensions.cs" />
+    <EmbeddedResource Include="FrmConnectionSettings.resx">
+      <DependentUpon>FrmConnectionSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modules\DeviceLogModule.resx">
       <DependentUpon>DeviceLogModule.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Modules\DynamicDNSModule.resx">
+      <DependentUpon>DynamicDNSModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\HomeNetworkOverviewModule.resx">
+      <DependentUpon>HomeNetworkOverviewModule.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Modules\ModuleBase.resx">
       <DependentUpon>ModuleBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\OnlineMonitorModule.resx">
+      <DependentUpon>OnlineMonitorModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules\PortMappingsModule.resx">
+      <DependentUpon>PortMappingsModule.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -92,6 +138,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -108,6 +155,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="fritzbox_U5V_icon.ico" />
+    <None Include="Resources\icons8-sortieren-runter-32.png" />
+    <None Include="Resources\icons8-parallele-aufgaben-32.png" />
+    <None Include="Resources\icons8-dyndns-32.png" />
+    <None Include="Resources\icons8-schalter-32.png" />
+    <None Include="Resources\icons8-flächendiagramm-32.png" />
+    <None Include="Resources\icons8-eigenschaft-bearbeiten-32.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

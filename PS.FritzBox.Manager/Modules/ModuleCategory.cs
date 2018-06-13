@@ -14,22 +14,22 @@ namespace PS.FritzBox.Manager.Modules
         /// <summary>
         /// category unknown
         /// </summary>
-        Unknown,
+        Unknown = 5,
         /// <summary>
         /// internet category
         /// </summary>
-        Internet,
+        Internet = 0,
         /// <summary>
         /// Home network
         /// </summary>
-        HomeNetwork,
+        HomeNetwork = 1,
         /// <summary>
         /// wlan
         /// </summary>
-        WLAN,
+        WLAN = 2,
         /// <summary>
         /// system category
         /// </summary>
-        System,
+        System = 3,
     }
 }
