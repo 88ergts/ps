@@ -18,11 +18,9 @@ namespace PS.FritzBox.Manager
         {
             InitializeComponent();
             Properties.Settings.Default.Upgrade();
-            this._connectionSettings.BaseUrl = Properties.Settings.Default.BaseUrl;
-            this._connectionSettings.UserName = Properties.Settings.Default.UserName;
-            this._connectionSettings.Password = Properties.Settings.Default.Password.Decrypt(Properties.Settings.Default.UserName);
             this.clmDescription.Width = -2;
-            this.lvModules.SizeChanged += (sender, e) => this.clmDescription.Width = -2; 
+            this.lvModules.SizeChanged += (sender, e) => this.clmDescription.Width = -2;
+            this._connectionSettings.Timeout = 10;
         }
 
         /// <summary>
@@ -46,39 +44,54 @@ namespace PS.FritzBox.Manager
             dlgAbout.ShowDialog();
         }
 
-        protected override void OnShown(EventArgs e)
+        protected async override void OnShown(EventArgs e)
         {
-            if (string.IsNullOrEmpty(this._connectionSettings.BaseUrl))
+            Control ctrl = this.ShowWaintingPanel("Searching for devices in the local network. Please wait...");
+            DeviceLocator locator = new DeviceLocator();
+            IEnumerable<FritzDevice> devices = await locator.DiscoverAsync();
+    
+            this.Controls.Remove(ctrl);
+            if (devices.Count() == 0)
             {
-                this.ShowConnectionSettings();
+                MessageBox.Show("No Fritz!Box devices found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+            else
+            {
+                FritzDevice device = this.ShowConnectionSettings(devices);
+                this.BuildTree(device);
             }
 
-            this.BuildTree();
-
             base.OnShown(e);
+        }
+
+        private Control ShowWaintingPanel(string message)
+        {
+            WaitingPanel panel = new WaitingPanel(message);
+            panel.Left = (this.Width - panel.Width) / 2;
+            panel.Top = (this.Height - panel.Height) / 2;
+            this.Controls.Add(panel);
+            panel.BringToFront();
+            return panel;
         }
 
         /// <summary>
         /// Method to show the connection settings
         /// </summary>
-        private void ShowConnectionSettings()
+        private FritzDevice ShowConnectionSettings(IEnumerable<FritzDevice> devices)
         {
             FrmConnectionSettings settings = new FrmConnectionSettings();
             settings.ConnectionSettings = this._connectionSettings;
+            settings.Devices = devices;
             settings.StartPosition = FormStartPosition.CenterParent;
             settings.ShowDialog();
 
-            Properties.Settings.Default.UserName = this._connectionSettings.UserName;
-            Properties.Settings.Default.Password = this._connectionSettings.Password.Encrypt(this._connectionSettings.UserName);
-            Properties.Settings.Default.BaseUrl = this._connectionSettings.BaseUrl;
-
-            Properties.Settings.Default.Save();
+            return settings.SelectedDevice;
         }
 
         /// <summary>
         /// Method to build the tree
         /// </summary>
-        private void BuildTree()
+        private void BuildTree(FritzDevice device)
         {
             // add category nodes
             this.BuildCategoryNode("System", ModuleCategory.System);
@@ -89,7 +102,7 @@ namespace PS.FritzBox.Manager
             this._modules = this.GetModules();
             foreach(ModuleBase module in this._modules)
             {
-                this.AppendModule(module);
+                this.AppendModule(module, device);
             }
         }
 
@@ -110,7 +123,7 @@ namespace PS.FritzBox.Manager
         /// Method to append a module to the tree
         /// </summary>
         /// <param name="module">the module</param>
-        private void AppendModule(ModuleBase module)
+        private void AppendModule(ModuleBase module, FritzDevice device)
         {
             foreach(TreeNode categoryNode in this.treeNavigation.Nodes)
             {
@@ -122,6 +135,7 @@ namespace PS.FritzBox.Manager
                     moduleNode.ImageIndex =
                     moduleNode.SelectedImageIndex = this.imlTree.Images.Count-1;
                     module.ConnectionSettings = this._connectionSettings;
+                    module.FritzDevice = device;
                 }
             }
         }
@@ -180,11 +194,6 @@ namespace PS.FritzBox.Manager
                     item.Tag = moduleNode;
                 }
             }
-        }
-
-        private void miConnectionSettings_Click(object sender, EventArgs e)
-        {
-            this.ShowConnectionSettings();
         }
 
         private void lvModules_DoubleClick(object sender, EventArgs e)

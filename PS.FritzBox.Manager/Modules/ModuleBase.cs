@@ -23,6 +23,11 @@ namespace PS.FritzBox.Manager.Modules
         }
 
         /// <summary>
+        /// Gets or sets the fritz device
+        /// </summary>
+        public FritzDevice FritzDevice { get; set; }
+
+        /// <summary>
         /// Gets or sets the module category
         /// </summary>
         public ModuleCategory Category { get; set; } = ModuleCategory.Unknown;

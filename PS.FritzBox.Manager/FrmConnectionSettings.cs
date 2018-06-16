@@ -24,14 +24,27 @@ namespace PS.FritzBox.Manager
         public ConnectionSettings ConnectionSettings { get; set; }
 
         /// <summary>
+        /// Gets or sets the devices
+        /// </summary>
+        public IEnumerable<FritzDevice> Devices { get; set; }
+
+        /// <summary>
+        /// Gets or sets the selected device
+        /// </summary>
+        public FritzDevice SelectedDevice { get; set; }
+
+        /// <summary>
         /// overidden load method
         /// </summary>
         /// <param name="e"></param>
         protected override void OnLoad(EventArgs e)
         {
-            this.txtBaseUrl.Text = this.ConnectionSettings.BaseUrl;
             this.txtPassword.Text = this.ConnectionSettings.Password;
             this.txtUserName.Text = this.ConnectionSettings.UserName;
+
+            this.cboDevice.DataSource = this.Devices;
+            this.cboDevice.DisplayMember = "FriendlyName";
+
             base.OnLoad(e);
         }
 
@@ -40,14 +53,13 @@ namespace PS.FritzBox.Manager
         /// </summary>
         private void ValidateInputs()
         {
-            bool urlValid = Uri.TryCreate(this.txtBaseUrl.Text, UriKind.Absolute, out Uri result);
             bool userDataValid = true;
             if(!String.IsNullOrEmpty(this.txtPassword.Text))
             {
                 userDataValid = !String.IsNullOrEmpty(this.txtUserName.Text);
             }
 
-            this.btnOK.Enabled = urlValid && userDataValid;
+            this.btnOK.Enabled = userDataValid;
         }
 
         private void txtBaseUrl_TextChanged(object sender, EventArgs e)
@@ -56,8 +68,7 @@ namespace PS.FritzBox.Manager
                 this.ConnectionSettings.UserName = this.txtUserName.Text;
             else if (sender == this.txtPassword)
                 this.ConnectionSettings.Password = this.txtPassword.Text;
-            else if (sender == this.txtBaseUrl)
-                this.ConnectionSettings.BaseUrl = this.txtBaseUrl.Text;
+            this.SelectedDevice = this.cboDevice.SelectedItem as FritzDevice;
 
             this.ValidateInputs();
         }

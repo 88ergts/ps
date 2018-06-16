@@ -17,7 +17,7 @@ namespace PS.FritzBox.Manager.Modules
             InitializeComponent();
             this.Category = ModuleCategory.HomeNetwork;
             this.Name = "Overview";
-            this.Description = "Lists connected devices.";
+            this.Description = "Lists connected devices.";          
         }
     }
 }

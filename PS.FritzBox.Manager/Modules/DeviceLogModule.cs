@@ -29,22 +29,21 @@ namespace PS.FritzBox.Manager.Modules
             // show waiter...
             try
             {
-                DeviceInfoClient client = new DeviceInfoClient(this.ConnectionSettings);
-                var log = await client.GetDeviceLogAsync();
+                if (this.FritzDevice.ContainsService<DeviceInfoClient>())
+                {
+                    var client = await this.FritzDevice.GetServiceClient<DeviceInfoClient>(this.ConnectionSettings);
 
-                this.rtbLog.Clear();
-                foreach (var entry in log)
-                    this.rtbLog.Text += $"{entry}{Environment.NewLine}";
+                    var log = await client.GetDeviceLogAsync();
+
+                    this.rtbLog.Clear();
+                    foreach (var entry in log)
+                        this.rtbLog.Text += $"{entry}{Environment.NewLine}";
+                }
             }
             catch(Exception ex)
             {
                 MessageBox.Show($"Failed reading device log.{Environment.NewLine}{ex}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
             }
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

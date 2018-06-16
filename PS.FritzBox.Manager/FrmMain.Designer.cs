@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.miProgram = new System.Windows.Forms.ToolStripMenuItem();
-            this.miConnectionSettings = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.miExit = new System.Windows.Forms.ToolStripMenuItem();
             this.miAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.stateBar = new PS.Windows.Forms.StatusBar();
@@ -41,10 +39,10 @@
             this.treeNavigation = new System.Windows.Forms.TreeView();
             this.imlTree = new System.Windows.Forms.ImageList(this.components);
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.txtPath = new System.Windows.Forms.TextBox();
             this.lvModules = new System.Windows.Forms.ListView();
             this.clmModuleName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clmDescription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.txtPath = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -67,29 +65,15 @@
             // miProgram
             // 
             this.miProgram.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.miConnectionSettings,
-            this.toolStripSeparator1,
             this.miExit});
             this.miProgram.Name = "miProgram";
             this.miProgram.Size = new System.Drawing.Size(65, 20);
             this.miProgram.Text = "&Program";
             // 
-            // miConnectionSettings
-            // 
-            this.miConnectionSettings.Name = "miConnectionSettings";
-            this.miConnectionSettings.Size = new System.Drawing.Size(180, 22);
-            this.miConnectionSettings.Text = "&Connection settings";
-            this.miConnectionSettings.Click += new System.EventHandler(this.miConnectionSettings_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
-            // 
             // miExit
             // 
             this.miExit.Name = "miExit";
-            this.miExit.Size = new System.Drawing.Size(180, 22);
+            this.miExit.Size = new System.Drawing.Size(92, 22);
             this.miExit.Text = "&Exit";
             this.miExit.Click += new System.EventHandler(this.miExit_Click);
             // 
@@ -162,19 +146,6 @@
             this.pnlMain.Size = new System.Drawing.Size(605, 513);
             this.pnlMain.TabIndex = 0;
             // 
-            // txtPath
-            // 
-            this.txtPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPath.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.txtPath.Location = new System.Drawing.Point(0, 0);
-            this.txtPath.Multiline = true;
-            this.txtPath.Name = "txtPath";
-            this.txtPath.ReadOnly = true;
-            this.txtPath.Size = new System.Drawing.Size(603, 20);
-            this.txtPath.TabIndex = 0;
-            // 
             // lvModules
             // 
             this.lvModules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -203,6 +174,19 @@
             // clmDescription
             // 
             this.clmDescription.Text = "Description";
+            // 
+            // txtPath
+            // 
+            this.txtPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPath.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.txtPath.Location = new System.Drawing.Point(0, 0);
+            this.txtPath.Multiline = true;
+            this.txtPath.Name = "txtPath";
+            this.txtPath.ReadOnly = true;
+            this.txtPath.Size = new System.Drawing.Size(603, 20);
+            this.txtPath.TabIndex = 0;
             // 
             // FrmMain
             // 
@@ -234,8 +218,6 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem miProgram;
-        private System.Windows.Forms.ToolStripMenuItem miConnectionSettings;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem miExit;
         private System.Windows.Forms.ToolStripMenuItem miAbout;
         private PS.Windows.Forms.StatusBar stateBar;
